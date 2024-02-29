@@ -1,5 +1,48 @@
 # VBA-challenge
-Sub GREAT SUCCESS()
+Sub PopulateUniqueTickers()
+    Dim year As Integer
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim tickerColumn As Range
+    Dim uniqueTickers As Collection
+    Dim tickerCell As Range
+    Dim ticker As Variant
+
+    ' Loop through each year
+    For year = 2018 To 2020
+        ' Set the worksheet for the current year
+        Set ws = Worksheets(CStr(year))
+
+        ' Find the last row in Column A
+        lastRow = ws.Cells(ws.Rows.Count, "A").End(xlUp).Row
+
+        ' Set the range for the ticker column (Column A)
+        Set tickerColumn = ws.Range("A2:A" & lastRow)
+
+        ' Create a collection to store unique tickers
+        Set uniqueTickers = New Collection
+
+        ' Loop through each cell in the ticker column
+        For Each tickerCell In tickerColumn
+            ' Check if the ticker is not already in the collection
+            On Error Resume Next
+            uniqueTickers.Add tickerCell.Value, CStr(tickerCell.Value)
+            On Error GoTo 0
+        Next tickerCell
+
+        ' Clear existing data in Column H
+        ws.Range("H:H").ClearContents
+
+        ' Populate unique tickers in Column H
+        For Each ticker In uniqueTickers
+            ws.Cells(ws.Rows.Count, "H").End(xlUp).Offset(1, 0).Value = ticker
+        Next ticker
+    Next year
+End Sub
+
+'----------------------------------------------------------------------------------------------------------------------------------------
+
+Sub Yearly_Changes_and_Greatest_values()
     Dim year As Integer
     Dim ws As Worksheet
     Dim lastRow As Long
@@ -98,3 +141,13 @@ Sub GREAT SUCCESS()
         ws.Cells(4, "O").Value = greatestVolume
     Next year
 End Sub
+
+
+
+
+
+
+
+
+
+
