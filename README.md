@@ -1,5 +1,7 @@
 # VBA-challenge
+
 Sub PopulateUniqueTickers()
+    
     Dim year As Integer
     Dim ws As Worksheet
     Dim lastRow As Long
@@ -39,10 +41,10 @@ Sub PopulateUniqueTickers()
         Next ticker
     Next year
 End Sub
-
-'----------------------------------------------------------------------------------------------------------------------------------------
+'-------------------------------------------------------------------------------------------------------
 
 Sub Yearly_Changes_and_Greatest_values()
+    
     Dim year As Integer
     Dim ws As Worksheet
     Dim lastRow As Long
@@ -50,6 +52,10 @@ Sub Yearly_Changes_and_Greatest_values()
     Dim openPrice As Double, closePrice As Double
     Dim currentTicker As String, previousTicker As String
     Dim outputRow As Long ' Track the row for output
+
+
+
+
     
     ' Loop through each year
     For year = 2018 To 2020
